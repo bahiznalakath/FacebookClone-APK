@@ -1,4 +1,5 @@
 import 'package:facebook_clone/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,16 +27,16 @@ class _HomePageState extends State<HomePage> {
             ),),
           backgroundColor: Colors.white,
           actions: [
-            IconButton(onPressed: (){},
+            IconButton(onPressed: () {},
                 icon: Icon(Icons.search,
                   color: Colors.black,)
             ),
-            IconButton(onPressed: (){},
+            IconButton(onPressed: () {},
                 icon: Icon(Icons.message,
                     color: Colors.blue)
             ),
-            IconButton(onPressed: (){
-              sigout(BuildContext);
+            IconButton(onPressed: () {
+              signOut(BuildContext);
             },
                 icon: Icon(Icons.exit_to_app,
                   color: Colors.black,)
@@ -70,11 +71,19 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  sigout(BuildContext) async{
-    final _sharedPrefs = await SharedPreferences.getInstance();
-    await  _sharedPrefs.clear();
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context)=>LoginPage()), (route) => false);
+
+  void signOut(BuildContext) async {
+    try {
+      // await FirebaseAuth.instance.signOut();
+      // print("Signout successful");
+      await FirebaseAuth.instance.currentUser?.delete();
+      print('User login data deleted successfully.');
+      Navigator.of(context).pushNamedAndRemoveUntil( '/login', (route) => false);
+
+    } catch (error) {
+      print("Error: ${error.toString()}");
+    }
   }
 }
+
 

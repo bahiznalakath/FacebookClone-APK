@@ -9,6 +9,7 @@ import 'firebase_options.dart';
 const SAVE_KEY_NAME ='UserLoggedIn';
 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -25,9 +26,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
      routes:{
-        //
+
        '/':(context)=> SplashScreen(),
-      '/splash':(context)=> HomePage(),
+      '/home':(context)=> HomePage(),
      '/login':(context)=> LoginPage(),
        '/sign':(context)=> SignUpPage(),
 
