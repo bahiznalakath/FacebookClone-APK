@@ -1,4 +1,5 @@
 import 'package:facebook_clone/login_page.dart';
+import 'package:facebook_clone/sign_up.dart';
 import 'package:facebook_clone/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
@@ -26,8 +27,10 @@ class MyApp extends StatelessWidget {
      routes:{
         //
        '/':(context)=> SplashScreen(),
-       '/splash':(context)=> HomePage(),
-       '/login':(context)=> LoginPage(),
+      '/splash':(context)=> HomePage(),
+     '/login':(context)=> LoginPage(),
+       '/sign':(context)=> SignUpPage(),
+
 
 
     } ,

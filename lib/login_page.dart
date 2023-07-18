@@ -1,5 +1,6 @@
 import 'package:facebook_clone/home_page.dart';
 import 'package:facebook_clone/main.dart';
+import 'package:facebook_clone/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue.shade50,
       body: SafeArea(
         child: Form(
           key: widget._formkey,
@@ -71,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 20),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Visibility(
                       visible: !widget._isDataMatched,
@@ -79,14 +81,30 @@ class _LoginPageState extends State<LoginPage> {
                         'Username password doesnot match',
                         style: TextStyle(color: Colors.red),
                       )),
+                  //signUpOption(),
+                  ElevatedButton(onPressed: (){
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context1)=> SignUpPage()));
+                  },
+
+                      child: Text('SignUp'),
+                    style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.all(16.0), // Adjust the button's padding
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0), // Apply rounded corners
+                    ),),
+                  ),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.all(16.0), // Adjust the button's padding
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0), // Apply rounded corners
+                      ),),
                     onPressed: () {
                      if(widget._formkey.currentState!.validate()){
                        checkLogin(context);
                      }else{
                        print("Data empty");
                      }
-                      //
                     },
                     child: Text("Login"),
                   ),
@@ -117,6 +135,24 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         widget._isDataMatched = false;
       });
+
+    /*  Row signUpOption(){
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("Don 't have accont",
+              style:TextStyle(color: Colors.white70)),
+            GestureDetector(
+              onTap:() {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context)=>SignUpPage()));
+              },
+              child: Text("Sign Up",
+              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+            )
+          ],
+        );
+      }*/
     }
   }
 }
