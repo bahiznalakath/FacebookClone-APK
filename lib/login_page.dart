@@ -1,11 +1,8 @@
 import 'package:facebook_clone/home_page.dart';
 import 'package:facebook_clone/main.dart';
-import 'package:facebook_clone/sign_up.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -38,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Image.asset('assets/images/logo1.png',
                       width: 200,
-                      height: 50,
+                      height: 150,
                     ),
                     Text("Facebook",style: TextStyle(fontSize: 15,color: Colors.blue,fontWeight: FontWeight.bold,),)
                   ],
