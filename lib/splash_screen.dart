@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState(){
     super.initState();
     checkUserLoggedIn();
-    // _navigatetohome();
+     _navigatetohome();
   }
   _navigatetohome()async{
     await Future.delayed(Duration(seconds: 3),(){});
@@ -31,13 +31,12 @@ class _SplashScreenState extends State<SplashScreen> {
       child: Scaffold(
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                child:Image.network(
-                  'https://th.bing.com/th/id/OIP.YBdpYxDSg6AtMUKXHme2MQHaHa?pid=ImgDet&rs=1',
-                  // Replace with your desired image link from Google
-                  width: 200,
+                child:Image.asset('assets/images/logo1.png',
+          width: 200,
                   height: 200,
                 ),
               ),
@@ -49,6 +48,18 @@ class _SplashScreenState extends State<SplashScreen> {
                   color: Colors.blue
                 ),),
               ),
+              CircularProgressIndicator(
+                value: null,
+                backgroundColor: Colors.grey,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                strokeWidth: 6.0,
+                semanticsLabel: 'Loading...',
+              ),
+        SizedBox(height: 16.0),
+        //Text(
+         // 'Loading...',
+         // style: TextStyle(fontSize: 16.0),
+         //     )
             ],
           ),
         ),
