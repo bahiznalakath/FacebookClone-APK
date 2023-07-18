@@ -35,8 +35,10 @@ class _LoginPageState extends State<LoginPage> {
                   }
                 },
                 controller: widget._usernameController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0), // Set the border radius
+                  ),
                   hintText: 'Username',
                   labelText: 'Username', // Changed from 'label' to 'labelText'
                   icon: Icon(Icons.mail),
@@ -58,8 +60,10 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 controller: widget._passwordController,
                 obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0), // Set the border radius
+                  ),
                   labelText: 'Password', // Changed from 'label' to 'labelText'
                   hintText: 'Password',
                   icon: Icon(Icons.password),
