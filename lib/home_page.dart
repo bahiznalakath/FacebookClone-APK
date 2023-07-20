@@ -1,3 +1,4 @@
+import 'package:facebook_clone/google_sign_in.dart';
 import 'package:facebook_clone/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -76,9 +77,10 @@ class _HomePageState extends State<HomePage> {
     try {
       // await FirebaseAuth.instance.signOut();
       // print("Signout successful");
+     // await FirebaseServices().signOut();
       await FirebaseAuth.instance.currentUser?.delete();
       print('User login data deleted successfully.');
-      Navigator.of(context).pushNamedAndRemoveUntil( '/login', (route) => false);
+      Navigator.of(context).pushNamedAndRemoveUntil( '/login', (route) => true);
 
     } catch (error) {
       print("Error: ${error.toString()}");

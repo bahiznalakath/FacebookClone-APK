@@ -1,8 +1,10 @@
+import 'package:facebook_clone/google_sign_in.dart';
 import 'package:facebook_clone/home_page.dart';
 import 'package:facebook_clone/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -12,6 +14,7 @@ class LoginPage extends StatefulWidget {
   bool _isDataMatched = true;
   final _formkey = GlobalKey<FormState>();
   bool passToggle = false;
+  bool isEmailValid =false;
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -21,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       backgroundColor: Colors.blue.shade50,
       body: SafeArea(
         child: Form(
@@ -43,11 +47,17 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextFormField(
                 validator: (value) {
-                  if (value == null || value.isEmpty ) {
-                    return "value is empty";
-                  } else {
-                    return null;
+                  final emailRegex = RegExp(r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$');
+
+                  if (value == null || value.isEmpty) {
+                    return 'Value is empty';
+                  } else if (!emailRegex.hasMatch(value)) {
+                    return 'Please enter a valid email';
                   }
+
+                  widget.isEmailValid = true;
+
+                  return null;
                 },
                 controller: widget._emailController,
                 decoration: InputDecoration(
@@ -170,7 +180,67 @@ class _LoginPageState extends State<LoginPage> {
                 fontSize: 18,
                 fontWeight: FontWeight.bold
             ),))
-          ],)
+          ],),
+              SizedBox(height: 10,),
+
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // final provider =
+              // Provider.of<GoogleSignInProvider>(context,listen: false);
+              // await provider.googleLogin();
+              // print("Created a account");
+              // Navigator.of(context).pushReplacement(
+              //   MaterialPageRoute(builder: (context1) => HomePage()),
+              // );
+              ElevatedButton(
+                onPressed: () async {
+                  await FirebaseServices().signInWithGoogle();
+                   Navigator.of(context).pushReplacement(
+                     MaterialPageRoute(builder: (context1) => HomePage()),
+                      );
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  elevation: 2.0,
+                  backgroundColor: Colors.white,
+                  padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
+                ),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/images/google.png',
+                      width: 50,
+                      height: 50,
+                    ),
+                  ],
+                ),
+              ),
+
+              ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),),
+                    elevation: 3.0,
+                    backgroundColor: Colors.white,
+                    padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
+                  ),
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        'assets/images/github.png',
+                        width: 50,
+                        height: 50,
+                      ),
+                    ],
+                  )
+              ),
+            ],
+          )
             ],
           ),
         ),
