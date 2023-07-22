@@ -61,12 +61,11 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 controller: widget._emailController,
                 decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.mail),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0), // Set the border radius
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
-                  hintText: 'enter your mail',
-                  labelText: 'enter your mail', // Changed from 'label' to 'labelText'
-                  icon: Icon(Icons.mail),
+                  labelText: 'enter your mail',
                 ),
               ),
               SizedBox(height: 20),
@@ -81,11 +80,11 @@ class _LoginPageState extends State<LoginPage> {
                 keyboardType: TextInputType.emailAddress,
                 obscureText: !widget.passToggle,
                 decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.lock),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   labelText: 'Password',
-                  icon: Icon(Icons.lock),
                   suffixIcon: InkWell(
                     onTap: () {
                       setState(() {
